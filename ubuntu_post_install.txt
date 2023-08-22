@@ -1,0 +1,33 @@
+sudo apt update && sudo apt upgrade -y 
+export PROMPT_RC=zshrc
+
+# Instalação OH-MY-ZSH
+
+# Instalação dos plugins
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+sed -i -e "s/(git)/(zsh-autosuggestions zsh-syntax-highlighting git z)/g" ~/.zshrc
+source ~/.zshrc
+
+# instalar Spaceship
+git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
+ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+sed -i -e "s/ZSH_THEME=\"sammy\"/ZSH_THEME=\"spaceship\"/g" ~/.zshrc
+
+# Instalação do batcat
+cd /tmp
+curl -L -o bat.deb https://github.com/sharkdp/bat/releases/download/v0.22.1/bat-musl_0.22.1_amd64.deb
+chmod +x bat.deb
+sudo dpkg -i bat.deb
+echo '#' >> ~/.zshrc
+echo '# batcat alias over cat' >> ~/.zshrc
+echo 'alias cat="bat --color=auto"' >> ~/.zshrc
+source ~/.zshrc
+rm -f bat.deb
+source ~/.zshrc
+
+# Instalação do Pyenv
+
+# Instalação do Docker
+
+sudo apt autoclean && sudo apt autoremove -y

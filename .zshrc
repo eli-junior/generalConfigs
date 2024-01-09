@@ -6,7 +6,8 @@ plugins=(zsh-autosuggestions zsh-syntax-highlighting git z)
 
 source $ZSH/oh-my-zsh.sh
 
-alias cat="bat --color=auto"
+alias cat="/bin/bat --color=auto"
+alias bat="/bin/cat"
 alias md=mkdir
 alias vi=nvim
 alias vim=nvim

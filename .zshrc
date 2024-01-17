@@ -21,7 +21,7 @@ alias gps='git push'
 alias gp='git pull'
 alias pipclean='pip freeze | xargs pip uninstall -y'
 alias gitclean='find . | grep .git | xargs rm -rf'
-alias virtualenv='pyenv virtualenv 3.11.4'
+alias venv='pyenv virtualenv 3.11'
 
 # Pyenv Configuration. See https://github.com/pyenv/pyenv for more information
 export PYENV_ROOT="$HOME/.pyenv"

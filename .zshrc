@@ -9,7 +9,9 @@ source $ZSH/oh-my-zsh.sh
 # Utils
 _md () {
   mkdir $1 && cd $1
-
+}
+#
+# Aliases
 alias cat="/bin/bat --color=auto"
 alias bat="/bin/cat"
 alias md=_md

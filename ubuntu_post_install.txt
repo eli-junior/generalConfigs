@@ -6,6 +6,11 @@ sudo apt update && sudo apt upgrade -y && sudo apt autoclean && sudo apt autorem
 # Install basic packages
 sudo apt install git gh zsh curl xclip -y
 
+# Git Config
+git config --global user.email "elijunior.py@gmail.com"
+git config --global user.name "Eli Junior"
+
+
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
@@ -83,7 +88,7 @@ cd -
 
 
 # New SSH-Key
-ssh-keygen -t ed25519 -C "your_email@example.com"
+ssh-keygen -t ed25519 -C "elijunior.py@gmail.com"
 cat ~/.ssh/id_ed25519.pub | xclip -sel c
 # cole o conteúdo da área de transferência em uma nova chave do github
 

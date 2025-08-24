@@ -32,10 +32,17 @@ sudo apt install build-essential libssl-dev zlib1g-dev \
 libbz2-dev libreadline-dev libsqlite3-dev curl \
 libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
 
+# Install Pyenv
+curl -fsSL https://pyenv.run | bash
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+echo 'eval "$(pyenv init - zsh)"' >> ~/.zshrc
+env PYTHON_CONFIGURE_OPTS='--enable-optimizations --with-lto' PYTHON_CFLAGS='-march=native -mtune=native' pyenv install 3.13
+
 # Install UV (Python Manager)
 curl -LsSf https://astral.sh/uv/install.sh | sh
 source ~/.zshrc
-uv python pin 3.13
+uv python pin 3.13.7
 
 # Install NVM
 echo '# >>>> NVM init >>>>' >> ~/.zshrc
@@ -75,7 +82,7 @@ sudo usermod -aG docker $USER
 # Verifique a versão mais recente em Releases · sharkdp/bat (github.com)
 BCVERSION=0.24.0
 cd /tmp
-curl -L -o bat.deb https://github.com/sharkdp/bat/releases/download/v$BCVERSION/bat-musl_"$BCVERSION"_amd64.deb 
+curl -L -o bat.deb https://github.com/sharkdp/bat/releases/download/v$BCVERSION/bat_"$BCVERSION"_amd64.deb 
 chmod +x bat.deb
 sudo dpkg -i bat.deb
 echo '#' >> ~/.zshrc

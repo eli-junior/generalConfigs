@@ -2,13 +2,20 @@
 
 Aqui estão algumas das configurações que faço em um novo ambiente de desenvolvimento.
 
-## Uso
+## Estrutura
+
+- `linux/`: instalador e perfil zsh para Ubuntu/Debian/WSL
+- `windows/`: profile PowerShell e configuracao WSL para usar no Windows
+- `Fonts/`: fontes compartilhadas usadas pelo setup
+- `vscode/`: configuracoes do VS Code
+
+## Uso Linux
 
 Em uma instalação limpa de Ubuntu ou Debian, clone este repositório e execute o instalador:
 
 ```bash
 git clone <url-do-repositorio> generalConfigs
-cd generalConfigs
+cd generalConfigs/linux
 chmod +x install.sh
 ./install.sh
 ```
@@ -31,6 +38,12 @@ Ele instala/configura:
 - Docker Engine e plugin `docker compose`
 - aliases principais no `~/.zshrc`
 - fontes locais do diretório `Fonts`
+
+## Uso Windows
+
+O profile PowerShell fica em `windows/Microsoft.PowerShell_profile.ps1`.
+
+A configuracao WSL fica em `windows/.wslconfig`.
 
 ## Observações
 

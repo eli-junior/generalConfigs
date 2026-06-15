@@ -205,14 +205,23 @@ install_oh_my_zsh() {
   fi
 
   if grep -Eq '^plugins=' "$zshrc"; then
-    sed -i 's/^plugins=.*/plugins=(git z zsh-syntax-highlighting zsh-autosuggestions)/' "$zshrc"
+    sed -i 's/^plugins=.*/plugins=(git z zsh-autosuggestions zsh-syntax-highlighting)/' "$zshrc"
   else
-    printf '\nplugins=(git z zsh-syntax-highlighting zsh-autosuggestions)\n' >> "$zshrc"
+    printf '\nplugins=(git z zsh-autosuggestions zsh-syntax-highlighting)\n' >> "$zshrc"
   fi
   log "Tema e plugins do zsh configurados"
 
-  append_once "$zshrc" "# >>> oh-my-zsh init >>>" 'export ZSH="$HOME/.oh-my-zsh"
+  if grep -Fq 'oh-my-zsh.sh' "$zshrc"; then
+    log "Inicializacao do oh-my-zsh ja presente em $zshrc"
+  else
+    append_once "$zshrc" "# >>> oh-my-zsh init >>>" 'export ZSH="$HOME/.oh-my-zsh"
 [[ -s "$ZSH/oh-my-zsh.sh" ]] && source "$ZSH/oh-my-zsh.sh"'
+  fi
+
+  if grep -Fq "bindkey '^I' menu-select" "$zshrc"; then
+    sed -i "s/bindkey '\\^I' menu-select/bindkey '\\^I' expand-or-complete/" "$zshrc"
+    log "Bind de Tab corrigido para expand-or-complete"
+  fi
 
   local current_shell
   current_shell="$(getent passwd "$USER" | cut -d: -f7 || true)"
@@ -358,7 +367,7 @@ alias gp="git pull"'
 
 install_fonts() {
   local source_dir
-  source_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/Fonts"
+  source_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/Fonts"
   local target_dir="$HOME/.local/share/fonts/generalConfigs"
 
   if [[ ! -d "$source_dir" ]]; then

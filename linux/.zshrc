@@ -49,7 +49,7 @@ autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
-bindkey '^I' menu-select
+bindkey '^I' expand-or-complete
 bindkey '^D' delete-char-or-list
 bindkey '^Z' undo
 bindkey '^[[A' up-line-or-beginning-search
@@ -161,7 +161,6 @@ function gl {
 # NVM Configuration
 export NVM_DIR="$HOME/.nvm"
 [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
-[[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
 
 # SDKMAN Configuration
 export SDKMAN_DIR="$HOME/.sdkman"
